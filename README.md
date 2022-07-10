@@ -14,7 +14,7 @@ As it is currently written, the ATM class uses double-precision floating point n
 You will be writing unit tests using [JUnit 5](https://junit.org/junit5/docs/current/user-guide/). Two tests have already been written for you to demonstrate JUnit syntax and how to test the ATM class. At the end of your testing, your unit tests should all pass and have 100% code coverage, meaning your tests run every single line of code.
 
 ## Recommended Tools
-Although you can use all the tools we mentin here separately, we recommend using the Eclipse IDE because it contains everything we need to complete this project.
+Although you can use all the tools we mentin here separately, we recommend using the Eclipse IDE because it contains everything we need to complete this project. It is also recommended that you do this work on your personal computers rather than a work laptop. Feel free to work on this during the normal workday as well.
 
 ### Eclipse Installation
 1. Download the [Eclipse IDE Installer](https://www.eclipse.org/downloads/packages/installer)
