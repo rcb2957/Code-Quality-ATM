@@ -1,57 +1,45 @@
-import java.util.Dictionary;
+/* Class to return currency exchange rates for USD, CAD and EUR.
+ * You may assume that this class works correctly and should not modify it in any way.
+ * Rates are from July 7, 2022 */
 
-/* Class to return currency exchange rates. Rates are from July 6, 2022 */
 public class CurrencyExchanger {
-
-    public CurrencyExchanger(String currentCurrencyCode, String desiredCurrencyCode) {
-        String currentCurrencyCode = currentCurrencyCode;
-        String desiredCurrencyCode = desiredCurrencyCode;
-    }
-
-    public static double getExchangeRate() {
-        switch (desiredCurrencyCode) {
-            case "USD":
-                switch (currencyCode) {
-                    case "USD": return 1.0;
-                    case "CAD": return 0.77;
-                    case "JPY": return 0.0074;
-                    case "GBP": return 1.19;
-                    case "EUR": return 1.02;
-                } break;
-            case "CAD":
-                switch (currencyCode) {
-                    case "USD": return 1.31;
-                    case "CAD": return 1.0;
-                    case "JPY": return 0.0096;
-                    case "GBP": return 1.56;
-                    case "EUR": return 1.33;
-                } break;
-            case "JPY":
-                switch (currencyCode) {
-                    case "USD": return 135.91;
-                    case "CAD": return 104.24;
-                    case "JPY": return 1.0;
-                    case "GBP": return 162.19;
-                    case "EUR": return 130.40;
-                } break;
-            case "GBP":
-                switch (currencyCode) {
-                    case "USD": return 0.84;
-                    case "CAD": return 0.64;
-                    case "JPY": return 0.0062;
-                    case "GBP": return 1.0;
-                    case "EUR": return 0.85;
-                } break;
-            case "EUR": 
-                switch (currencyCode) {
-                    case "USD": return 0.98;
-                    case "CAD": return 0.75;
-                    case "JPY": return 0.0072;
-                    case "GBP": return 1.17;
-                    case "EUR": return 1.0;
-                } break;
-            default:
-                System.out.println(desiredCurrencyCode + " is not a valid currency type. Valid types are:\nUSD, CAD, JPY, GBP and EUR");
-        }
-    }
+	
+	public double getExchangeRate(String currentCurrency, String desiredCurrency) throws Exception {
+		
+		double exchangeRate = 0;
+		
+		switch (currentCurrency) {
+		
+			/* Convert USD to other currencies */
+		case "USD":
+			switch (desiredCurrency) {
+				case "USD": exchangeRate = 1.0; break;
+				case "CAD": exchangeRate = 1.3; break;
+				case "EUR": exchangeRate = 0.98; break;
+				default:
+					throw new UnsupportedCurrencyCodeException(desiredCurrency + " is not a supported currency to convert to. Supported currencies are: USD, CAD and EUR");
+			} break;
+			
+		/* Convert CAD to other currencies*/
+		case "CAD":
+			switch (desiredCurrency) {
+				case "USD": exchangeRate = 0.7; break;
+				case "CAD": exchangeRate = 1.0; break;
+				case "EUR": exchangeRate = 0.76; break;
+				default:
+					throw new UnsupportedCurrencyCodeException(desiredCurrency + " is not a supported currency to convert to. Supported currencies are: USD, CAD and EUR");
+			} break;
+			
+		/* Convert EUR to other currencies */
+		case "EUR":
+			switch (desiredCurrency) {
+			case "USD": exchangeRate = 1.02; break;
+			case "CAD": exchangeRate = 1.34; break;
+			case "EUR": exchangeRate = 1.0; break;
+			default:
+				throw new UnsupportedCurrencyCodeException(desiredCurrency + " is not a supported currency to convert to. Supported currencies are: USD, CAD and EUR");
+			} break;
+		}
+		return exchangeRate;
+	}
 }
