@@ -29,6 +29,10 @@ Although you can use all the tools we mentin here separately, we recommend using
 5. Paste the clone link from before in the URI field in the window that pops up
 6. Enter your github username and password in the Authentication section and click finish
 
+### Checking Unit Test Coverage
+In the top bar, to the right of the run button, you will find the test coverage button. Clicking this button will give you your code coverage percent and also highlight which lines of code your tests cover and which lines of code they dont. Use this tool to help you develop more unit tests.
+
+
 ### Committing to Git
 1. Use CTRL + 3 or CMD + 3 and type git staging in the search box
 2. Open git staging and stage all changes with the double + button
