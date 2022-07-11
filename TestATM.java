@@ -17,5 +17,5 @@ class TestATM {
 		Assert.assertEquals(100, atm.checkBalance(), 0.01);
 		Assert.assertEquals("USD", atm.checkCurrency());
 	}
-
+	/* Write your tests here */
 }
