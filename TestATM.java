@@ -43,12 +43,9 @@ class TestATM {
 
 	}
 
-//	MODIFY
-	@Test
+	@Test (expected = UnsupportedCurrencyCodeException.class)
 	void testAccountCreationInvalidCurrency() throws Exception {
 		ATM atm = new ATM(0, "RAT");
-		Assert.assertEquals(0, atm.checkBalance(), 0.01);
-		Assert.assertEquals("USD", atm.checkCurrency());
 	}
 
 	// Deposit Tests
@@ -81,7 +78,7 @@ class TestATM {
 		Assert.assertEquals(7, atm.checkBalance(), 0.01);
 	}
 
-	// Withdrawl Tests (INCOMPLETE)
+	// Withdrawl Tests
 
 	@Test
 	void testNoWithdrawl() throws Exception {
@@ -112,6 +109,74 @@ class TestATM {
 	}
 
 	// Currency Changing Tests (INCOMPLETE)
+	@Test
+	void testExchangeEURToUSD() throws Exception {
+		ATM atm = new ATM(100, "EUR");
+		atm.exchangeCurrency("USD");
+		Assert.assertEquals(100, atm.checkBalance(), 0.01);
+		Assert.assertEquals("USD", atm.checkCurrency());
+	}
 
+	@Test
+	void testExchangeCADToUSD() throws Exception {
+		ATM atm = new ATM(100, "CAD");
+		atm.exchangeCurrency("USD");
+		Assert.assertEquals(100, atm.checkBalance(), 0.01);
+		Assert.assertEquals("USD", atm.checkCurrency());
+	}
+
+	@Test
+	void testExchangeUSDToCAD() throws Exception {
+		ATM atm = new ATM(100, "USD");
+		atm.exchangeCurrency("CAD");
+		Assert.assertEquals(100, atm.checkBalance(), 0.01);
+		Assert.assertEquals("CAD", atm.checkCurrency());
+	}
+
+	@Test
+	void testExchangeCADToCAD() throws Exception {
+		ATM atm = new ATM(100, "CAD");
+		atm.exchangeCurrency("CAD");
+		Assert.assertEquals(100, atm.checkBalance(), 0.01);
+		Assert.assertEquals("CAD", atm.checkCurrency());
+	}
+
+	@Test
+	void testExchangeEURToCAD() throws Exception {
+		ATM atm = new ATM(100, "EUR");
+		atm.exchangeCurrency("CAD");
+		Assert.assertEquals(100, atm.checkBalance(), 0.01);
+		Assert.assertEquals("CAD", atm.checkCurrency());
+	}
+
+	@Test
+	void testExchangeUSDToEUR() throws Exception {
+		ATM atm = new ATM(100, "USD");
+		atm.exchangeCurrency("EUR");
+		Assert.assertEquals(100, atm.checkBalance(), 0.01);
+		Assert.assertEquals("USD", atm.checkCurrency());
+	}
+
+	@Test
+	void testExchangeCADToEUR() throws Exception {
+		ATM atm = new ATM(100, "CAD");
+		atm.exchangeCurrency("EUR");
+		Assert.assertEquals(100, atm.checkBalance(), 0.01);
+		Assert.assertEquals("EUR", atm.checkCurrency());
+	}
+
+	@Test
+	void testExchangeEURToEUR() throws Exception {
+		ATM atm = new ATM(100, "EUR");
+		atm.exchangeCurrency("EUR");
+		Assert.assertEquals(100, atm.checkBalance(), 0.01);
+		Assert.assertEquals("EUR", atm.checkCurrency());
+	}
+
+	@Test (expected = IllegalArgumentException.class)
+	void testExchangeToInvalidCurrency() throws Exception {
+		ATM atm = new ATM(200, "CAD");
+		atm.exchangeCurrency("PIE");
+	}
 
 }
