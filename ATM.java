@@ -35,9 +35,12 @@ public class ATM {
 	
 	/* Method to deposit (add) money to the account */
 	public void deposit(double depositAmount) {
-		System.out.println("Depositing " + depositAmount + " " + currentCurrency)
+		BigDecimal deposit = new BigDecimal(depositAmount);
+		BigDecimal initialBalance = new BigDecimal(balance);
+		BigDecimal total = initialBalance.add(deposit);
 		if(depositAmount > 0){
-			balance += depositAmount;
+			System.out.println("Depositing " + depositAmount + " " + currentCurrency);
+			balance = total.doubleValue();
 		} else {
 			System.out.println("All deposits must exceed a currency amount of 0");
 		}
@@ -45,9 +48,12 @@ public class ATM {
 	
 	/* Method to withdraw (subtract) money from the account */
 	public void withdraw(double withdrawalAmount) {
-		System.out.println("Withdrawing " + withdrawalAmount + " " + currentCurrency);
+		BigDecimal withdrawal = new BigDecimal(withdrawalAmount);
+		BigDecimal initialBalance = new BigDecimal(balance);
+		BigDecimal total = initialBalance.add(withdrawal);
 		if(withdrawalAmount > 0 && (balance - withdrawalAmount) >= 0){
-			balance -= withdrawalAmount;
+			System.out.println("Withdrawing " + withdrawalAmount + " " + currentCurrency);
+			balance = total.doubleValue();
 		} else if(withdrawalAmount <= 0){
 			System.out.println("All withdrawls must exceed a currency amount of 0");
 		} else {
@@ -61,8 +67,11 @@ public class ATM {
 			currentCurrency = currencyCode;
 			CurrencyExchanger exchanger = new CurrencyExchanger();
 			double exchangeRate = exchanger.getExchangeRate(currentCurrency, desiredCurrency);
+			BigDecimal er = new BigDecimal(exchangeRate);
+			BigDecimal currentBalance = new BigDecimal(balance);
+			BigDecimal total = er.multiply(currentBalance);
 			currentCurrency = desiredCurrency;
-			balance *= exchangeRate;
+			balance = total.doubleValue();
 		} else {
 			throw new UnsupportedCurrencyCodeException(currencyCode + " is not a supported currency. Supported currencies are " + supportedCurrencyCodeList.toString());
 		}

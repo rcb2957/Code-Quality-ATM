@@ -1,0 +1,25 @@
+#Introduction
+
+My first step in working on this challenge was to look through all of the files and methods so that I would understand what the code was set up to do and how.  This way, I could more easily identify bugs in the code and develop unit tests.
+
+#Finding and Fixing the Bugs
+
+I found the bugs in ATM.java very easily, as most were performing an operation on the balance variable in ATM, but the expressions were not set up correctly.  In addition to fixing these expressions to equate to the new balance after the operation (addition, subtraction, multiplication), I added conditional statements to block negative deposits and withdraws, prevent withdraws where the user tries to withdraw more than the atm has, and prevent changes to invalid forms of currency.  I also used conditionals to prevent an account from being made with a negative balance or invalid form of currency, with an UnsupportedCurrencyCodeException thrown if either of those are true.
+
+#Creating the JUnit Tests
+
+I then created my JUnit tests.  To ensure I covered as many possible cases as I could, I made tests for each method with a test for each form of currency, and a test for a positive, negative, and no amount of currency.  Unit tests were also made for the constructor to check if ATM is properly initialized and if an exception is thrown if the input values are not valid.
+
+After some of the tests fail due to my lack of knowledge on testing for thrown exceptions, I decided to research the topic to find a way to test for exceptions.  I looked at multiple sources, but ended up using an approach used in StackOverflow.  This method was successful as the tests now had code coverage for thrown exceptions and the tests for exceptions now pass.
+
+#Modifications Made After Testing
+
+Once all the tests passed, I uncovered missing code coverage for the CurrencyExchanger class.   Since I initially created a conditional statement to block currency from being exchanged when the form of currency entered is not supported.  This prevented the default condition in CurrencyExchanger, which throws the UnsupportedCurrencyCodeException, from being reached.  Once I removed the conditional statement, the code remained functional, but this time reached full code coverage for the CurrencyExchanger class.
+
+#Converting to BigDecimal
+
+After getting the program functional, the unit tests passing, and code coverage at 100% (minus the lines in TestATM.java referencing a method that throws an exception), I begin converting to BigDecimal inside each method and then set the new balance to the double value of the BigDecimal holding the total value of the balance from after the operation (deposit, withdraw, exchange currency) is performed.  Surprisingly, my tests did not need modification, since the methods have the same input and output.
+
+#Conclusion
+
+With all the unit tests passing, 100% code coverage, and BigDecimal utilized, I went to turn the project in on GitHub.
